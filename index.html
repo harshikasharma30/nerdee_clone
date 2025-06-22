@@ -64,11 +64,38 @@
     &copy; 2025 Nerdee Clone. All rights reserved.
   </footer>
 
-  <!-- JavaScript for Mobile Menu Toggle -->
+  <!-- JavaScript -->
   <script>
+    // Toggle menu visibility on mobile
     function toggleMenu() {
       document.getElementById("mobileMenu").classList.toggle("hidden");
     }
+
+    // Fullscreen video on mobile tap
+    const video = document.getElementById("heroVideo");
+
+    video.addEventListener("click", async () => {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        try {
+          if (video.requestFullscreen) {
+            await video.requestFullscreen();
+          } else if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen(); // iOS Safari
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+
+          // Optional: lock orientation to landscape
+          if (screen.orientation && screen.orientation.lock) {
+            await screen.orientation.lock("landscape").catch(() => {});
+          }
+        } catch (err) {
+          console.log("Fullscreen or orientation lock failed:", err);
+        }
+      }
+    });
   </script>
 
 </body>
