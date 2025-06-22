@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nerdee Clone</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+
+  <!-- HEADER -->
+  <header class="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-yellow-400 to-orange-400">
+    <div class="flex items-center gap-2">
+      <img src="https://nerdee.in/logo-icon.svg" alt="Logo" class="w-10 h-10">
+      <span class="text-black font-extrabold text-2xl">NERDEE</span>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero-section" class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12">
+    <div class="z-10 text-center md:text-left md:w-1/2 space-y-6">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Math & Sports Nerds,<br>Win Real Money!</h1>
+      <p class="text-lg md:text-xl font-light">Participate in sports fantasy and math skill events while enjoying your favourite sports.</p>
+      <a href="/app?" class="inline-block bg-yellow-400 text-black font-bold px-6 py-3 rounded-lg shadow-md">Start Playing</a>
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <div class="w-full md:w-1/2 mt-10 md:mt-0">
+      <div class="relative w-full">
+        <video
+          id="heroVideo"
+          class="w-full h-auto rounded-xl shadow-lg"
+          src="https://nerdee.in/_a/startplay/nerdee-comp.mp4"
+          poster="https://nerdee.in/_a/startplay/mb-poster.jpg"
+          controls
+          playsinline
+          muted
+          preload="auto"
+        ></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-gray-400 text-center py-6 mt-16 border-t border-gray-700">
+    &copy; 2025 Nerdee Clone. All rights reserved.
+  </footer>
+
+  <!-- JavaScript: Fullscreen with Orientation on Mobile -->
+  <script>
+    const video = document.getElementById('heroVideo');
+
+    video.addEventListener('click', async () => {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isMobile) {
+        try {
+          if (video.requestFullscreen) {
+            await video.requestFullscreen();
+          } else if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen(); // iOS Safari
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+
+          // Optional: Lock screen orientation to landscape
+          if (screen.orientation && screen.orientation.lock) {
+            await screen.orientation.lock("landscape").catch(() => {});
+          }
+        } catch (e) {
+          console.error("Fullscreen or orientation lock failed:", e);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
