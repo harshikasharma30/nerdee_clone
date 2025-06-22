@@ -9,36 +9,55 @@
 <body class="bg-black text-white overflow-x-hidden">
 
   <!-- HEADER -->
-  <header class="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-yellow-400 to-orange-400">
-    <div class="flex items-center gap-2">
-      <img src="https://nerdee.in/logo-icon.svg" alt="Logo" class="w-10 h-10">
-      <span class="text-black font-extrabold text-2xl">NERDEE</span>
+  <header class="text-white py-3 bg-gradient-to-r from-yellow-400 to-orange-400 sticky top-0 z-50">
+    <div class="w-full flex items-center justify-between px-6 max-w-6xl mx-auto">
+      <div class="flex items-center gap-2 bg-black rounded-full px-4 py-2">
+        <img src="https://nerdee.in/logo-icon.svg" alt="Nerdee Logo" class="w-8 h-8">
+        <span class="text-white font-extrabold text-xl">NERDEE</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-8 text-base font-medium">
+        <a href="#hero-section" class="hover:text-yellow-400 transition">HOME</a>
+        <a href="#how-it-works" class="hover:text-yellow-400 transition">HOW IT WORKS</a>
+        <a href="#refer-and-earn" class="hover:text-yellow-400 transition">REFER AND EARN</a>
+      </nav>
+      <button onclick="toggleMenu()" class="md:hidden bg-black rounded-full px-4 py-3">
+        <img src="https://nerdee.in/_a/menu.svg" alt="Menu" class="w-6 h-4" />
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden flex-col gap-4 px-6 pt-4 pb-6 bg-black text-white md:hidden">
+      <a class="hover:text-yellow-400 transition block" href="#hero-section">HOME</a>
+      <a class="hover:text-yellow-400 transition block" href="#how-it-works">HOW IT WORKS</a>
+      <a class="hover:text-yellow-400 transition block" href="#refer-and-earn">REFER AND EARN</a>
     </div>
   </header>
 
   <!-- HERO SECTION -->
-  <section id="hero-section" class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12">
+  <section id="hero-section" class="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 py-12">
+    <!-- Left Text Column -->
     <div class="z-10 text-center md:text-left md:w-1/2 space-y-6">
       <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Math & Sports Nerds,<br>Win Real Money!</h1>
       <p class="text-lg md:text-xl font-light">Participate in sports fantasy and math skill events while enjoying your favourite sports.</p>
       <a href="/app?" class="inline-block bg-yellow-400 text-black font-bold px-6 py-3 rounded-lg shadow-md">Start Playing</a>
     </div>
 
-    <!-- VIDEO SECTION -->
-    <div class="w-full md:w-1/2 mt-10 md:mt-0">
-      <div class="relative w-full">
-        <video
-          id="heroVideo"
-          class="w-full h-auto rounded-xl shadow-lg"
-          src="https://nerdee.in/_a/startplay/nerdee-comp.mp4"
-          poster="https://nerdee.in/_a/startplay/mb-poster.jpg"
-          controls
-          playsinline
-          muted
-          preload="auto"
-        ></video>
-      </div>
+    <!-- Right Mascot Image -->
+    <div class="w-full md:w-1/2 mb-10 md:mb-0">
+      <img src="https://nerdee.in/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpig-mb.2fd1f059.png&w=1920&q=75" alt="Mascot" class="w-full max-w-md mx-auto md:mx-0" />
     </div>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="px-6 md:px-16 mb-10">
+    <video
+      id="heroVideo"
+      class="w-full h-auto rounded-xl shadow-lg"
+      src="https://nerdee.in/_a/startplay/nerdee-comp.mp4"
+      poster="https://nerdee.in/_a/startplay/mb-poster.jpg"
+      controls
+      playsinline
+      muted
+      preload="auto"
+    ></video>
   </section>
 
   <!-- FOOTER -->
@@ -46,31 +65,11 @@
     &copy; 2025 Nerdee Clone. All rights reserved.
   </footer>
 
-  <!-- JavaScript: Fullscreen with Orientation on Mobile -->
+  <!-- JavaScript for Mobile Menu Toggle -->
   <script>
-    const video = document.getElementById('heroVideo');
-
-    video.addEventListener('click', async () => {
-      const isMobile = /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      if (isMobile) {
-        try {
-          if (video.requestFullscreen) {
-            await video.requestFullscreen();
-          } else if (video.webkitEnterFullscreen) {
-            video.webkitEnterFullscreen(); // iOS Safari
-          } else if (video.msRequestFullscreen) {
-            video.msRequestFullscreen();
-          }
-
-          // Optional: Lock screen orientation to landscape
-          if (screen.orientation && screen.orientation.lock) {
-            await screen.orientation.lock("landscape").catch(() => {});
-          }
-        } catch (e) {
-          console.error("Fullscreen or orientation lock failed:", e);
-        }
-      }
-    });
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
   </script>
 
 </body>
