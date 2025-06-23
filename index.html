@@ -82,12 +82,12 @@
           if (video.requestFullscreen) {
             await video.requestFullscreen();
           } else if (video.webkitEnterFullscreen) {
-            video.webkitEnterFullscreen(); // iOS Safari
+            video.webkitEnterFullscreen();
           } else if (video.msRequestFullscreen) {
             video.msRequestFullscreen();
           }
 
-          // Optional: lock orientation to landscape
+          // lock orientation to landscape
           if (screen.orientation && screen.orientation.lock) {
             await screen.orientation.lock("landscape").catch(() => {});
           }
